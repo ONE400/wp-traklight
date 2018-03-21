@@ -5,7 +5,7 @@
  * Plugin URI: http://www.one-400.com/
  * Description: A Traklight integration plugin for WordPress
  * Author: ONE400
- * Author URI: http://www.one-40.com/
+ * Author URI: http://www.one-400.com/
  * Requires at least: 4.0
  * Tested up to: 4.0
  *
@@ -22,6 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 // Load plugin class files
 require_once( 'includes/class-wp-traklight.php' );
 require_once( 'includes/class-wp-traklight-settings.php' );
+require_once( 'includes/class-wp-traklight-base.php' );
 
 // Load plugin libraries
 require_once( 'includes/lib/class-wp-traklight-admin-api.php' );

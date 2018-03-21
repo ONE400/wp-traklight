@@ -104,6 +104,9 @@ class WP_Traklight {
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ), 10, 1 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_styles' ), 10, 1 );
 
+		// Register shortcodes
+        add_shortcode('wp-traklight', array($this, 'wp_traklight_shortcode'));
+
 		// Load API for generic admin functions
 		if ( is_admin() ) {
 			$this->admin = new WP_Traklight_Admin_API();
@@ -271,5 +274,12 @@ class WP_Traklight {
 	private function _log_version_number () {
 		update_option( $this->_token . '_version', $this->_version );
 	} // End _log_version_number ()
+
+
+	public function wp_traklight_shortcode()
+	{
+		$tl = new WP_Traklight_Base();
+		return $tl->show();
+	}
 
 }

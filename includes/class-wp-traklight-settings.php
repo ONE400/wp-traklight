@@ -108,17 +108,34 @@ class WP_Traklight_Settings {
 	private function settings_fields () {
 
 		$settings['standard'] = array(
-			'title'					=> __( 'Standard', 'wp-traklight' ),
-			'description'			=> __( 'These are fairly standard form input fields.', 'wp-traklight' ),
+			'title'					=> __( 'Settings', 'wp-traklight' ),
+			'description'			=> __( 'Basic Traklight customization settings', 'wp-traklight' ),
 			'fields'				=> array(
 				array(
-					'id' 			=> 'text_field',
-					'label'			=> __( 'Some Text' , 'wp-traklight' ),
-					'description'	=> __( 'This is a standard text field.', 'wp-traklight' ),
+					'id' 			=> 'subdomain',
+					'label'			=> __( 'Subdomain' , 'wp-traklight' ),
+					'description'	=> __( 'Traklight provided subdomain', 'wp-traklight' ),
 					'type'			=> 'text',
 					'default'		=> '',
-					'placeholder'	=> __( 'Placeholder text', 'wp-traklight' )
+					'placeholder'	=> __( '', 'wp-traklight' )
 				),
+				array(
+					'id' 			=> 'ak',
+					'label'			=> __( 'Auth Key' , 'wp-traklight' ),
+					'description'	=> __( 'Traklight provided authentication key', 'wp-traklight' ),
+					'type'			=> 'text',
+					'default'		=> '',
+					'placeholder'	=> __( '', 'wp-traklight' )
+				),
+				array(
+					'id' 			=> 'server',
+					'label'			=> __( 'Server', 'wp-traklight' ),
+					'description'	=> __( 'Authenticate to Staging or Production server', 'wp-traklight' ),
+					'type'			=> 'select',
+					'options'		=> array( 'staging' => 'Staging', 'production' => 'Production'),
+					'default'		=> 'staging'
+				),
+				/*
 				array(
 					'id' 			=> 'password_field',
 					'label'			=> __( 'A Password' , 'wp-traklight' ),
@@ -151,14 +168,6 @@ class WP_Traklight_Settings {
 					'default'		=> ''
 				),
 				array(
-					'id' 			=> 'select_box',
-					'label'			=> __( 'A Select Box', 'wp-traklight' ),
-					'description'	=> __( 'A standard select box.', 'wp-traklight' ),
-					'type'			=> 'select',
-					'options'		=> array( 'drupal' => 'Drupal', 'joomla' => 'Joomla', 'wordpress' => 'WordPress' ),
-					'default'		=> 'wordpress'
-				),
-				array(
 					'id' 			=> 'radio_buttons',
 					'label'			=> __( 'Some Options', 'wp-traklight' ),
 					'description'	=> __( 'A standard set of radio buttons.', 'wp-traklight' ),
@@ -174,9 +183,11 @@ class WP_Traklight_Settings {
 					'options'		=> array( 'square' => 'Square', 'circle' => 'Circle', 'rectangle' => 'Rectangle', 'triangle' => 'Triangle' ),
 					'default'		=> array( 'circle', 'triangle' )
 				)
+				*/
 			)
 		);
 
+		/*
 		$settings['extra'] = array(
 			'title'					=> __( 'Extra', 'wp-traklight' ),
 			'description'			=> __( 'These are some extra input fields that maybe aren\'t as common as the others.', 'wp-traklight' ),
@@ -214,6 +225,7 @@ class WP_Traklight_Settings {
 				)
 			)
 		);
+		*/
 
 		$settings = apply_filters( $this->parent->_token . '_settings_fields', $settings );
 
