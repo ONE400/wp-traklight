@@ -37,7 +37,6 @@ class WP_Traklight_Base {
 		$params = Array(
 			'ak'	=> get_option('tl_ak'),
 			'email' => wp_get_current_user()->user_email,
-			//'email' => 'kellewic+1@gmail.com',
 		);
 
 		$r = wp_remote_get( $api_url.'?'.http_build_query($params) );

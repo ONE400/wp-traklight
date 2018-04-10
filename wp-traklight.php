@@ -29,6 +29,8 @@ require_once( 'includes/lib/class-wp-traklight-admin-api.php' );
 require_once( 'includes/lib/class-wp-traklight-post-type.php' );
 require_once( 'includes/lib/class-wp-traklight-taxonomy.php' );
 
+require_once( 'includes/lib/traklight-php-api-wrapper.php' );
+
 /**
  * Returns the main instance of WP_Traklight to prevent the need to use globals.
  *
