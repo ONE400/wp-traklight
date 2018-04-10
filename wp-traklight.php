@@ -1,7 +1,7 @@
 <?php
 /*
  * Plugin Name: WP Traklight
- * Version: 1.0
+ * Version: 1.0.1
  * Plugin URI: http://www.one-400.com/
  * Description: A Traklight integration plugin for WordPress
  * Author: ONE400
@@ -38,7 +38,7 @@ require_once( 'includes/lib/traklight-php-api-wrapper.php' );
  * @return object WP_Traklight
  */
 function WP_Traklight () {
-	$instance = WP_Traklight::instance( __FILE__, '1.0.0' );
+	$instance = WP_Traklight::instance( __FILE__, '1.0.1' );
 
 	if ( is_null( $instance->settings ) ) {
 		$instance->settings = WP_Traklight_Settings::instance( $instance );

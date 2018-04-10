@@ -20,6 +20,10 @@ This plugin inserts the Traklight iframe into your Wordpress install. It will us
 
 == Changelog ==
 
+= 1.0.1 =
+* 2018-04-09
+* Minor Refactor; no new features
+
 = 1.0 =
 * 2018-03-20
 * Initial release
