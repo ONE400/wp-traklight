@@ -4,55 +4,33 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 class WP_Traklight_Base {
 
-	private $url;
+	private $tk;
 
 	public function __construct()
 	{
-		//$subdomain = 'legalproplan';
 		$subdomain = get_option('tl_subdomain');
+		$authKey = get_option('tl_ak');
 		$server = get_option('tl_server');
-		$staging_url = "https://{$subdomain}.staging.traklight.com";
-		$prod_url = "https://{$subdomain}.apps.traklight.com";
-		$this->url = ($server == 'staging') ? $staging_url : $prod_url;
+
+		$this->tk = new TraklightApiWrapper($subdomain, $authKey);
+		if($server == "staging") $this->tk->useStaging = true;
 	}
 
 	public function show()
 	{
         ob_start();
-			$sid = $this->get_session();
-			if($sid) echo $this->load_iframe($sid);
+			echo $this->load_iframe($sid);
         return ob_get_clean();
 	}
 
 	public function load_iframe($sid)
 	{
-		$url1 = $this->url."/api/v1/login/session/{$sid}";
-		$url2 = $this->url;
-		include(dirname(__FILE__).'/templates/iframe.tpl.php');
-	}
-
-	public function get_session()
-	{
-		$api_url = $this->url.'/api/v1/login/';
-		$params = Array(
-			'ak'	=> get_option('tl_ak'),
-			'email' => wp_get_current_user()->user_email,
-		);
-
-		$r = wp_remote_get( $api_url.'?'.http_build_query($params) );
-
-		if($r['response']['code'] != 200)
-		{
-			error_log('WP Traklight Error: '.print_r($r['body'],true));
-			$body = json_decode($r['body'],true);
-			echo $body['error']['developerMessage'];
-			return false;
-		}
-		else
-		{
-			$body = json_decode($r['body'],true);
-			$sid = $body['data']['sid'];
-			return $sid;
+		try {
+			$email = wp_get_current_user()->user_email;
+			$url = $this->tk->getSessionUrl($email);
+			include(dirname(__FILE__).'/templates/iframe.tpl.php');
+		} catch(TraklightException $e) {
+			echo "Error: ".$e->getMessage();
 		}
 	}
 }
